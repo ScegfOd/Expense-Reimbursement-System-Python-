@@ -1,0 +1,6 @@
+db_init/reset.sh
+app/db/credentials.py
+app/static/
+**.parcel-cache/
+**node_modules/
+cucumber_selenium/svw.py
