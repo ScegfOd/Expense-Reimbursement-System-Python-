@@ -1,0 +1,98 @@
+* {
+	font-family: serif;
+	float:none;
+}
+
+header h1 {
+	text-align: center;
+	font-family: sans-serif;
+}
+
+body {
+	background-color: #E0E0E0;
+	margin: 1rem;
+	padding: 1rem;
+	display: flex;
+	flex-direction: column;
+}
+
+nav {
+	background-color: #A0A0E0;
+	margin: 2rem;
+	padding: 1em 3em 1em 3em;
+	border: dotted;
+	max-width: 12em;
+}
+nav li{
+	list-style-type: none;
+}
+nav p{
+	background-color: #B0B0E0;
+	text-decoration: none;
+	color: black;
+	margin: 0em;
+}
+nav li p.active{
+	background-color: #303070;
+	color: white;
+}
+nav ul{
+	padding: 0;
+	margin: 0;
+}
+
+main {
+	background-color: #E0A0A0;
+	margin: 2rem;
+	padding: 1rem;
+}
+
+body footer{
+	text-align: center;
+	font-size: small;
+}
+
+img {
+	width: 20em;
+	float: right;
+	border: dashed;
+}
+td {
+	border: 1px dashed darkblue;
+	padding: 2px
+}
+table {
+	border: 3px dashed darkblue;
+	margin: 1em;
+	background-color: #f0e0e0;
+}
+section.form {
+	display: grid;
+	grid-template-columns: 1fr 3fr;
+	grid-row-gap: .3em;
+	grid-column-gap: .1em;
+}
+.border {
+	border: 3px dashed darkblue;
+	margin: 1em;
+	background-color: #f0e0e0;
+}
+section.form label{
+	justify-self: end;
+}
+header+button{
+	width: 100%;
+}
+#ThanksDialog{
+	display: none;
+	position: fixed;
+	background-color: #f0e0e0;
+	border: brown 1em solid;
+	padding: 1em;
+	width: 50%;
+	top: 20%;
+	left: 25%;
+}
+#ThanksDialog.ShowDialog {
+	display: unset;
+}

@@ -1,0 +1,829 @@
+{
+	"info": {
+		"_postman_id": "178e3c43-0ae6-4e0a-99d6-cb39f35642d8",
+		"name": "reimbursment_app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "make some tea",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 418\", function () {",
+							"    pm.response.to.have.status(418);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{lh}}/",
+					"host": [
+						"{{lh}}"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login fail",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 401\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"fail@notlol.com\",\n    \"password\": \"nope\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{lh}}/login",
+					"host": [
+						"{{lh}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login success",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"Tim@lol.com\",\n    \"password\": \"TtE\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{lh}}/login",
+					"host": [
+						"{{lh}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "single reimbursement base view",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{lh}}/employees/1/reimbursements/1",
+					"host": [
+						"{{lh}}"
+					],
+					"path": [
+						"employees",
+						"1",
+						"reimbursements",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "single reimbursement fail",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{lh}}/employees/1/reimbursements/2",
+					"host": [
+						"{{lh}}"
+					],
+					"path": [
+						"employees",
+						"1",
+						"reimbursements",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "single reimbursement fail 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{lh}}/employees/2/reimbursements/1",
+					"host": [
+						"{{lh}}"
+					],
+					"path": [
+						"employees",
+						"2",
+						"reimbursements",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "single reimbursement fail 3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{lh}}/employees/0/reimbursements/0",
+					"host": [
+						"{{lh}}"
+					],
+					"path": [
+						"employees",
+						"0",
+						"reimbursements",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "all reimbursement for eid (one)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"multiple responses\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(Object.keys(jsonData).length).to.eql(1);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{lh}}/employees/3/reimbursements",
+					"host": [
+						"{{lh}}"
+					],
+					"path": [
+						"employees",
+						"3",
+						"reimbursements"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "all reimbursement for eid (many)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"multiple responses\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(Object.keys(jsonData).length).to.eql(11);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{lh}}/employees/4/reimbursements",
+					"host": [
+						"{{lh}}"
+					],
+					"path": [
+						"employees",
+						"4",
+						"reimbursements"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "all reimbursement for eid fail",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{lh}}/employees/0/reimbursements",
+					"host": [
+						"{{lh}}"
+					],
+					"path": [
+						"employees",
+						"0",
+						"reimbursements"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "new reimbursement for eid success",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"pennies\": 500,\n    \"reason\": \"gimmie $5\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{lh}}/employees/6/reimbursements",
+					"host": [
+						"{{lh}}"
+					],
+					"path": [
+						"employees",
+						"6",
+						"reimbursements"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "new reimbursement for eid fail bodyless",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{lh}}/employees/6/reimbursements",
+					"host": [
+						"{{lh}}"
+					],
+					"path": [
+						"employees",
+						"6",
+						"reimbursements"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "new reimbursement for eid fail eid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{lh}}/employees/0/reimbursements",
+					"host": [
+						"{{lh}}"
+					],
+					"path": [
+						"employees",
+						"0",
+						"reimbursements"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all reimbursements",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"multiple responses\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(Object.keys(jsonData).length).to.gt(14);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{lh}}/managers/1/reimbursements",
+					"host": [
+						"{{lh}}"
+					],
+					"path": [
+						"managers",
+						"1",
+						"reimbursements"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "manager 1 reimbursement",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{lh}}/managers/1/reimbursements/10",
+					"host": [
+						"{{lh}}"
+					],
+					"path": [
+						"managers",
+						"1",
+						"reimbursements",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "manager 1 reimbursement fail",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{lh}}/managers/1/reimbursements/100",
+					"host": [
+						"{{lh}}"
+					],
+					"path": [
+						"managers",
+						"1",
+						"reimbursements",
+						"100"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "manager put reimbursement fail",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{lh}}/managers/1/reimbursements/100",
+					"host": [
+						"{{lh}}"
+					],
+					"path": [
+						"managers",
+						"1",
+						"reimbursements",
+						"100"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "manager put auto-disapprove",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{lh}}/managers/1/reimbursements/10",
+					"host": [
+						"{{lh}}"
+					],
+					"path": [
+						"managers",
+						"1",
+						"reimbursements",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "castigate manager",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"is_approved\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{lh}}/managers/1/reimbursements/1",
+					"host": [
+						"{{lh}}"
+					],
+					"path": [
+						"managers",
+						"1",
+						"reimbursements",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "show foolishness",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{lh}}/managers/1/reimbursements/1",
+					"host": [
+						"{{lh}}"
+					],
+					"path": [
+						"managers",
+						"1",
+						"reimbursements",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "manager get all rq for eid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"multiple responses\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(Object.keys(jsonData).length).to.eql(11);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{lh}}/managers/1/reimbursements/employees/4",
+					"host": [
+						"{{lh}}"
+					],
+					"path": [
+						"managers",
+						"1",
+						"reimbursements",
+						"employees",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "manager get all rq for eid fail",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{lh}}/managers/1/reimbursements/employees/404",
+					"host": [
+						"{{lh}}"
+					],
+					"path": [
+						"managers",
+						"1",
+						"reimbursements",
+						"employees",
+						"404"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get stats",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "/managers/1/reimbursements/statistics",
+					"path": [
+						"managers",
+						"1",
+						"reimbursements",
+						"statistics"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "lh",
+			"value": "http://localhost:5000"
+		}
+	]
+}

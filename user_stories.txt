@@ -1,0 +1,8 @@
+as an employee, I can log in to access employee portions of the app
+as an employee, I can create a reimbursement request with an amount and a reason (bonus: file upload)
+as an employee, I can view reimbursement requests I have made previously whether pending, approved, or denied
+as a manager, I can log in to access manager portions of the app
+as a manager, I can create a reimbursement request with an amount and a reason (bonus: file upload)
+as a manager, I can approve or deny any (except their own) pending request (optionally leaving a message)
+as a manager, I can view any/all reimbursement requests whether pending, approved, or denied
+as a manager, I can view a 'statistics' page. This page includes information like what employee spends the most money, mean expenditure cost etc...
